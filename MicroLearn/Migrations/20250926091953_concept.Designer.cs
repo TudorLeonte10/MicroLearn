@@ -4,6 +4,7 @@ using MicroLearn.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroLearn.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250926091953_concept")]
+    partial class concept
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,39 +69,6 @@ namespace MicroLearn.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Domains");
-                });
-
-            modelBuilder.Entity("MicroLearn.Models.Question", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ConceptId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CorrectAnswer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OptionsJson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("QuestionType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConceptId");
-
-                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("MicroLearn.Models.Topic", b =>
@@ -176,17 +146,6 @@ namespace MicroLearn.Migrations
                     b.Navigation("Topic");
                 });
 
-            modelBuilder.Entity("MicroLearn.Models.Question", b =>
-                {
-                    b.HasOne("MicroLearn.Models.Concept", "Concept")
-                        .WithMany("Questions")
-                        .HasForeignKey("ConceptId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Concept");
-                });
-
             modelBuilder.Entity("MicroLearn.Models.Topic", b =>
                 {
                     b.HasOne("MicroLearn.Models.Domain", "Domain")
@@ -196,11 +155,6 @@ namespace MicroLearn.Migrations
                         .IsRequired();
 
                     b.Navigation("Domain");
-                });
-
-            modelBuilder.Entity("MicroLearn.Models.Concept", b =>
-                {
-                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("MicroLearn.Models.Domain", b =>

@@ -21,6 +21,8 @@ namespace MicroLearn.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Domain> Domains { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<Concept> Concepts { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
     }
 }

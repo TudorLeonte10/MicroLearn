@@ -19,7 +19,7 @@ namespace MicroLearn.Controllers
         public async Task<IActionResult> GetAllDomains()
         {
             var domains = await _domainRepository.GetAllDomains();
-            return Ok(domains.Select(d => d.ToDto()));
+            return Ok(domains.Select(d => d.ToWithTopicsDto()));
         }
 
         [HttpGet("{id}")]
@@ -30,14 +30,7 @@ namespace MicroLearn.Controllers
             {
                 return NotFound();
             }
-            return Ok(domain.ToDto());
-        }
-
-        [HttpGet("with-topics")]
-        public async Task<IActionResult> GetAllDomainsWithTopics()
-        {
-            var domains = await _domainRepository.GetAllWithTopics();
-            return Ok(domains.Select(d => d.ToWithTopicsDto()));
+            return Ok(domain.ToWithTopicsDto());
         }
 
         [HttpPost]

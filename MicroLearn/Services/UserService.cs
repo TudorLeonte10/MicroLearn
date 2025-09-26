@@ -39,7 +39,7 @@ namespace MicroLearn.Services
 
             return new AuthResponse
             {
-                AccesToken = token,
+                AccessToken = token,
                 Username = user.Username,
                 Email = user.Email,
                 Role = user.Role.ToString(),
@@ -79,7 +79,7 @@ namespace MicroLearn.Services
                 Username = user.Username,
                 Email = user.Email,
                 Role = user.Role.ToString(),
-                AccesToken = token,
+                AccessToken = token,
             };
         }
     }

@@ -29,22 +29,29 @@ namespace MicroLearn.Repositories
                 return null;
             }
             _context.Topics.Remove(topic);
+            await _context.SaveChangesAsync();
             return topic;
         }
-
         public async Task<List<Topic>> GetAllTopics()
         {
-            return await _context.Topics.ToListAsync();
+            return await _context.Topics
+                .Include(t => t.Concepts)
+                .ToListAsync();
         }
 
         public async Task<Topic?> GetTopicById(int id)
         {
-            return await _context.Topics.FindAsync(id);
+            return await _context.Topics
+                .Include(t => t.Concepts)
+                .FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<IEnumerable<Topic>> GetTopicsByDomainId(int domainId)
         {
-            return await _context.Topics.Where(t => t.DomainId == domainId).ToListAsync();
+            return await _context.Topics
+                .Include(t => t.Concepts)
+                .Where(t => t.DomainId == domainId)
+                .ToListAsync();
         }
 
         public async Task<Topic?> UpdateTopic(int id, UpdateTopicDto dto)

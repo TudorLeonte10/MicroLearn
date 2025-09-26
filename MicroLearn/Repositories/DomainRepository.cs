@@ -30,6 +30,7 @@ namespace MicroLearn.Repositories
                 return null;
             }
             _context.Domains.Remove(domain);
+            await _context.SaveChangesAsync();
             return domain;
         }
 

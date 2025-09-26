@@ -1,4 +1,6 @@
-﻿namespace MicroLearn.Dtos.Topic
+﻿using MicroLearn.Dtos.Concept;
+
+namespace MicroLearn.Dtos.Topic
 {
     public class TopicDto
     {
@@ -6,5 +8,7 @@
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public int DomainId { get; set; }
+
+        public List<ConceptDto> Concepts { get; set; }
     }
 }

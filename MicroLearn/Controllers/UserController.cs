@@ -54,17 +54,14 @@ namespace MicroLearn.Controllers
             }
             catch (ArgumentException ex)
             {
-                // lipsesc câmpuri
                 return BadRequest(new { error = ex.Message });
             }
             catch (UnauthorizedAccessException ex)
             {
-                // user inexistent sau parolă greșită
                 return Unauthorized(new { error = ex.Message });
             }
             catch (Exception ex)
             {
-                // fallback
                 return StatusCode(500, new { error = ex.Message });
             }
         }

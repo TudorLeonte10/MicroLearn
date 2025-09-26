@@ -7,5 +7,6 @@
         public string? Description { get; set; }
         public int DomainId { get; set; }
         public Domain Domain { get; set; } = null!;
+        public ICollection<Concept> Concepts { get; set; } = new List<Concept>();
     }
 }
