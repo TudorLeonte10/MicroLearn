@@ -4,7 +4,7 @@ import { getTopicsByDomainId } from "../api/topicApi";
 import { Topic } from "../types/Topic";
 
 const TopicsPage: React.FC = () => {
-  const { domainId } = useParams();
+  const { domainId, domainName } = useParams();
   const [topics, setTopics] = useState<Topic[]>([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const TopicsPage: React.FC = () => {
   return (
     <div className="text-center">
       <h2 className="text-3xl font-bold text-indigo-700 mb-6">
-        Subiecte pentru domeniul {domainId}
+        Subiecte pentru domeniul {domainName}
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
