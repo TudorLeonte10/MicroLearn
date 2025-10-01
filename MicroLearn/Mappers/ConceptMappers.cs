@@ -13,6 +13,8 @@ namespace MicroLearn.Mappers
             Description = concept.Description,
             Name = concept.Name,
             TopicId = concept.TopicId,
+            Details = concept.Details,
+            Recap = concept.Recap,
             Questions = concept.Questions.Select(q => new QuestionDto
             {
                 Id = q.Id,
@@ -29,7 +31,9 @@ namespace MicroLearn.Mappers
             {
                 Description = dto.Description,
                 Name = dto.Name,
-                TopicId = dto.TopicId
+                TopicId = dto.TopicId,
+                Details = dto.Details,
+                Recap = dto.Recap
             };
     }
 }

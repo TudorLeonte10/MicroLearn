@@ -60,6 +60,8 @@ namespace MicroLearn.Repositories
             concept.Name = updateConcept.Name;
             concept.Description = updateConcept.Description;
             concept.TopicId = updateConcept.TopicId;
+            concept.Details = updateConcept.Details;
+            concept.Recap = updateConcept.Recap;
             await _context.SaveChangesAsync();
             return concept;
         }
